@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
+const config = require("config");
+const mongoURI = config.get("mongoURI");
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://localhost/image-uploader", {
+    await mongoose.connect(mongoURI, {
       useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
       useUnifiedTopology: true
     });
 
